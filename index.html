@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeonBoard · Tablero de tareas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="aurora aurora--cyan" aria-hidden="true"></div>
+  <div class="aurora aurora--pink" aria-hidden="true"></div>
+  <div class="aurora aurora--green" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__mark" aria-hidden="true">◆</span>
+      <div>
+        <h1 class="brand__name">NeonBoard</h1>
+        <p class="brand__sub">Tablero de tareas · guardado local</p>
+      </div>
+    </div>
+
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="true" aria-label="Cambiar tema">
+      <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+      <span class="theme-toggle__text">Modo oscuro</span>
+    </button>
+  </header>
+
+  <main class="board" id="board">
+    <section class="column" data-status="pendiente">
+      <header class="column__head">
+        <h2 class="column__title"><span class="dot" aria-hidden="true"></span>Pendiente</h2>
+        <span class="column__count" data-status="pendiente" aria-label="Número de tareas">0</span>
+      </header>
+      <div class="column__list" data-status="pendiente" aria-label="Tareas pendientes"></div>
+      <button class="add-btn" type="button" data-status="pendiente">
+        <span aria-hidden="true">＋</span> Nueva tarea
+      </button>
+    </section>
+
+    <section class="column" data-status="en proceso">
+      <header class="column__head">
+        <h2 class="column__title"><span class="dot" aria-hidden="true"></span>En proceso</h2>
+        <span class="column__count" data-status="en proceso" aria-label="Número de tareas">0</span>
+      </header>
+      <div class="column__list" data-status="en proceso" aria-label="Tareas en proceso"></div>
+      <button class="add-btn" type="button" data-status="en proceso">
+        <span aria-hidden="true">＋</span> Nueva tarea
+      </button>
+    </section>
+
+    <section class="column" data-status="terminada">
+      <header class="column__head">
+        <h2 class="column__title"><span class="dot" aria-hidden="true"></span>Terminada</h2>
+        <span class="column__count" data-status="terminada" aria-label="Número de tareas">0</span>
+      </header>
+      <div class="column__list" data-status="terminada" aria-label="Tareas terminadas"></div>
+      <button class="add-btn" type="button" data-status="terminada">
+        <span aria-hidden="true">＋</span> Nueva tarea
+      </button>
+    </section>
+  </main>
+
+  <p class="hint">Arrastra las tarjetas entre columnas · Tus tareas se guardan en este navegador</p>
+
+  <dialog class="modal" id="task-modal" aria-labelledby="modal-title">
+    <form class="modal__form" id="task-form" novalidate>
+      <h2 class="modal__title" id="modal-title">Nueva tarea</h2>
+
+      <label class="field">
+        <span>Título *</span>
+        <input id="f-title" name="title" type="text" required maxlength="80" autocomplete="off"
+               placeholder="Ej. Diseñar la landing page" />
+      </label>
+
+      <label class="field">
+        <span>Descripción <em>(opcional)</em></span>
+        <textarea id="f-desc" name="description" rows="3" maxlength="240"
+                  placeholder="Detalles, notas o criterios de aceptación"></textarea>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          <span>Estado</span>
+          <select id="f-status" name="status">
+            <option value="pendiente">Pendiente</option>
+            <option value="en proceso">En proceso</option>
+            <option value="terminada">Terminada</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Fecha</span>
+          <input id="f-date" name="date" type="date" />
+        </label>
+      </div>
+
+      <div class="modal__actions">
+        <button type="button" class="btn btn--ghost" id="cancel">Cancelar</button>
+        <button type="submit" class="btn btn--primary">Guardar tarea</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
